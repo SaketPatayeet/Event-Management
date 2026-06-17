@@ -1,0 +1,226 @@
+/* Notifications.css - Dark notification center styling */
+
+.notifications-page {
+  min-height: 100vh;
+  background: #080a10;
+  color: #ffffff;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.notifications-container {
+  width: min(1040px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.notifications-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.notifications-header h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.35rem;
+  font-weight: 800;
+  margin: 0 0 0.5rem;
+  color: #ffffff;
+}
+
+.notifications-subtitle {
+  margin: 0;
+  color: #94a3b8;
+  line-height: 1.6;
+}
+
+.notifications-header-icon,
+.notifications-empty-icon,
+.notification-card-icon {
+  display: grid;
+  place-items: center;
+  color: #aa3bff;
+  background: rgba(170, 59, 255, 0.1);
+  border: 1px solid rgba(170, 59, 255, 0.22);
+}
+
+.notifications-header-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  flex-shrink: 0;
+}
+
+.notifications-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.notification-card {
+  display: flex;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: rgba(15, 23, 42, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.28);
+}
+
+.notification-card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.notification-content {
+  min-width: 0;
+  flex: 1;
+}
+
+.notification-card-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.notification-type-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.14);
+  border: 1px solid rgba(192, 132, 252, 0.24);
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.notification-type-badge.registration_confirmed {
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.12);
+  border-color: rgba(52, 211, 153, 0.22);
+}
+
+.notification-date {
+  color: #64748b;
+  font-size: 0.86rem;
+  white-space: nowrap;
+}
+
+.notification-message {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.notifications-loading,
+.notifications-empty,
+.notifications-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 280px;
+  padding: 2rem;
+  text-align: center;
+  background: rgba(15, 23, 42, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 8px;
+}
+
+.notifications-loading {
+  gap: 0.8rem;
+  color: #94a3b8;
+}
+
+.notifications-empty-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+.notifications-empty h2 {
+  margin: 0;
+  color: #e2e8f0;
+  font-size: 1.3rem;
+}
+
+.notifications-error p {
+  margin: 0 0 1rem;
+  color: #fca5a5;
+}
+
+.notifications-retry-btn {
+  color: #ffffff;
+  background: linear-gradient(135deg, #aa3bff 0%, #8b5cf6 50%, #6366f1 100%);
+  border: 0;
+  border-radius: 8px;
+  padding: 0.75rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.notifications-retry-btn:hover {
+  filter: brightness(1.06);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.animate-fadeIn {
+  animation: fadeInUp 0.45s ease forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 700px) {
+  .notifications-container {
+    width: min(100% - 1rem, 1040px);
+    padding-top: 1.5rem;
+  }
+
+  .notifications-header {
+    align-items: flex-start;
+  }
+
+  .notifications-header h1 {
+    font-size: 2rem;
+  }
+
+  .notification-card {
+    padding: 1rem;
+  }
+
+  .notification-card-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
+  .notification-date {
+    white-space: normal;
+  }
+}
