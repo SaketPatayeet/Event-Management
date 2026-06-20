@@ -83,8 +83,12 @@ function Events() {
         headers: { Authorization: `Bearer ${token}` }
       });
       // Map to set of registered event IDs
-      const ids = new Set(res.data.results.map(reg => reg.event));
-      setRegisteredIds(ids);
+      const ids = new Set(
+  res.data.results
+    .filter(reg => reg.status === 'confirmed')
+    .map(reg => reg.event)
+);
+setRegisteredIds(ids);
     } catch (err) {
       console.error('Failed to load user registrations', err);
     }
@@ -301,7 +305,7 @@ function Events() {
             <h1>Platform Events</h1>
             <p className="welcome-text">Explore and manage scheduled group meetups and gatherings.</p>
           </div>
-          {role === 'admin' && (
+          {(role === 'admin' || role === 'superadmin') && (
             <button 
               type="button" 
               className="create-event-btn" 
@@ -380,7 +384,7 @@ function Events() {
                         </div>
                         <div className="detail-item">
                           <UserIcon />
-                          <span>Host ID: {event.created_by}</span>
+                          <span>Created By: {event.created_by}</span>
                         </div>
                       </div>
 
@@ -399,7 +403,7 @@ function Events() {
                       </div>
 
                       {/* Card Actions */}
-                      {role === 'admin' ? (
+                      {role === 'admin' || role === 'superadmin' ? (
                         <div className="admin-actions-container">
                           <div className="card-actions">
                             <button

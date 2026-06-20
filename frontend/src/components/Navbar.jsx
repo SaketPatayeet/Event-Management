@@ -1,13 +1,35 @@
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
+const navLinks = {
+  attendee: [
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/events', label: 'Events' },
+    { path: '/notifications', label: 'Notifications' },
+  ],
+
+  admin: [
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/events', label: 'Events' },
+    { path: '/notifications', label: 'Notifications' },
+  ],
+
+  superadmin: [
+    { path: '/dashboard', label: 'Dashboard' },
+    { path: '/events', label: 'Events' },
+    { path: '/registrations', label: 'Registrations' },
+    { path: '/users', label: 'Users' },
+  ],
+};
+
+
 function Navbar() {
   const navigate = useNavigate();
   const location = useLocation();
   
   const username = localStorage.getItem('username') || 'User';
   const role = localStorage.getItem('role') || 'attendee';
-
+  
   const handleLogout = () => {
     localStorage.clear();
     navigate('/login');
@@ -36,25 +58,18 @@ function Navbar() {
 
         {/* Navigation Links */}
         <div className="navbar-links">
-          <Link 
-            to="/dashboard" 
-            className={`navbar-link ${location.pathname === '/dashboard' ? 'active' : ''}`}
-          >
-            Dashboard
-          </Link>
-          <Link 
-            to="/events" 
-            className={`navbar-link ${location.pathname === '/events' ? 'active' : ''}`}
-          >
-            Events
-          </Link>
-          <Link
-            to="/notifications"
-            className={`navbar-link ${location.pathname === '/notifications' ? 'active' : ''}`}
-          >
-            Notifications
-          </Link>
-        </div>
+  {(navLinks[role] || navLinks.attendee).map((link) => (
+    <Link
+      key={link.path}
+      to={link.path}
+      className={`navbar-link ${
+        location.pathname === link.path ? 'active' : ''
+      }`}
+    >
+      {link.label}
+    </Link>
+  ))}
+</div>
 
         {/* User profile & Logout */}
         <div className="navbar-actions">

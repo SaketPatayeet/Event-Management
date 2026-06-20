@@ -5,6 +5,8 @@ import Dashboard from './pages/Dashboard';
 import Events from './pages/Events';
 import Notifications from './pages/Notifications';
 import Navbar from './components/Navbar';
+import Registrations from './pages/Registrations';
+import Users from './pages/Users';
 
 // Simple styled wrapper for placeholders to preserve app styling and navbar links
 const PlaceholderPage = ({ title }) => (
@@ -27,6 +29,11 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/events" element={<Events />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/users" element={<Users />} />
+        <Route
+  path="/registrations"
+  element={<Registrations />}
+/>
       </Routes>
     </BrowserRouter>
   );

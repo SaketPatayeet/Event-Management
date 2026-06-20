@@ -22,12 +22,18 @@ class UserSerializer(serializers.ModelSerializer):
         }
 
 class RegistrationSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user.username', read_only=True)
+    email = serializers.CharField(source='user.email', read_only=True)
+    event_title = serializers.CharField(source='event.title', read_only=True)
+
     class Meta:
         model = Registration
         fields = '__all__'
         read_only_fields = ['user', 'registered_at']
 
     def validate(self, data):
+        if 'event' not in data:
+            return data  # skip duplicate check for PATCH
         user = self.context['request'].user
         event = data['event']
         if Registration.objects.filter(user=user, event=event).exists():

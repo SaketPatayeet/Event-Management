@@ -86,6 +86,47 @@ function Dashboard() {
             <div className="stat-card skeleton"></div>
             <div className="stat-card skeleton"></div>
           </div>
+
+          {role === 'superadmin' && (
+  <>
+    <div className="stat-card">
+      <div className="stat-icon-wrapper regs">
+        <RegsIcon />
+      </div>
+      <div className="stat-info">
+        <span className="stat-label">Total Users</span>
+        <h2 className="stat-value">
+          {data?.total_users ?? 0}
+        </h2>
+      </div>
+    </div>
+
+    <div className="stat-card">
+      <div className="stat-icon-wrapper regs">
+        <RegsIcon />
+      </div>
+      <div className="stat-info">
+        <span className="stat-label">Total Admins</span>
+        <h2 className="stat-value">
+          {data?.total_admins ?? 0}
+        </h2>
+      </div>
+    </div>
+
+    <div className="stat-card">
+      <div className="stat-icon-wrapper regs">
+        <RegsIcon />
+      </div>
+      <div className="stat-info">
+        <span className="stat-label">Total Attendees</span>
+        <h2 className="stat-value">
+          {data?.total_attendees ?? 0}
+        </h2>
+      </div>
+    </div>
+  </>
+)}
+
           {role === 'admin' && (
             <div className="table-container skeleton-table">
               <div className="table-header-skeleton"></div>

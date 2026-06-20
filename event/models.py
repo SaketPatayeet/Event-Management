@@ -4,9 +4,10 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     ROLE_CHOICES = [
-        ('admin', 'Admin'),
-        ('attendee', 'Attendee'),
-    ]
+    ('admin', 'Admin'),
+    ('attendee', 'Attendee'),
+    ('superadmin', 'Superadmin'),
+]
     role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='attendee')
 
     def __str__(self):
@@ -37,7 +38,6 @@ class Registration(models.Model):
     ]
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='registrations')
     event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='registrations')
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='confirmed')
     registered_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
